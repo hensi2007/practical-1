@@ -1,0 +1,137 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int arr[100], n, i, choice, pos, value;
+    bool found;
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    cout << "Enter array elements: ";
+    for (i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+
+    do
+    {
+        cout << "\n\nMENU";
+        cout << "\n1. Insert";
+        cout << "\n2. Delete";
+        cout << "\n3. Traverse";
+        cout << "\n4. Search";
+        cout << "\n5. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+            case 1:
+                if (n >= 100)
+                {
+                    cout << "Array is full!";
+                    break;
+                }
+
+                cout << "Enter position (0 to " << n << "): ";
+                cin >> pos;
+
+                if (pos < 0 || pos > n)
+                {
+                    cout << "Invalid position!";
+                    break;
+                }
+
+                cout << "Enter value: ";
+                cin >> value;
+
+                for (i = n; i > pos; i--)
+                {
+                    arr[i] = arr[i - 1];
+                }
+
+                arr[pos] = value;
+                n++;
+
+                cout << "Array after insertion: ";
+                for (i = 0; i < n; i++)
+                {
+                    cout << arr[i] << " ";
+                }
+                break;
+
+            case 2:
+                if (n == 0)
+                {
+                    cout << "Array is empty!";
+                    break;
+                }
+
+                cout << "Enter position to delete (0 to "
+                     << n - 1 << "): ";
+                cin >> pos;
+
+                if (pos < 0 || pos >= n)
+                {
+                    cout << "Invalid position!";
+                    break;
+                }
+
+                for (i = pos; i < n - 1; i++)
+                {
+                    arr[i] = arr[i + 1];
+                }
+
+                n--;
+
+                cout << "Array after deletion: ";
+                for (i = 0; i < n; i++)
+                {
+                    cout << arr[i] << " ";
+                }
+                break;
+
+            case 3:
+                cout << "Array elements are: ";
+                for (i = 0; i < n; i++)
+                {
+                    cout << arr[i] << " ";
+                }
+                break;
+
+            case 4:
+                cout << "Enter value to search: ";
+                cin >> value;
+
+                found = false;
+
+                for (i = 0; i < n; i++)
+                {
+                    if (arr[i] == value)
+                    {
+                        cout << "Element found at index " << i;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    cout << "Element not found!";
+                }
+                break;
+
+            case 5:
+                cout << "Program exited successfully.";
+                break;
+
+            default:
+                cout << "Invalid choice!";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
